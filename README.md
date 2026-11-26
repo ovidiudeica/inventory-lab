@@ -14,6 +14,10 @@ A small, read-only engineering portfolio project for inventory analysis, discrep
 
 The static website uses a deterministic Python export. Optional generative AI runs on the visitor's device after explicit consent to download public assets. No commercial inference adapter or API credentials are required. See [Browser AI and cost policy](AI.md).
 
+## Live demonstration
+
+The static dashboard is designed for [GitHub Pages](https://ovidiudeica.github.io/inventory-lab/). Once deployed, it requires no installation or API key. The REST API and MCP server are local development components, not hosted endpoints.
+
 ## Run locally
 
 Requires Python 3.12. From the repository root, create and activate a virtual environment, then run:
@@ -61,6 +65,6 @@ CI runs the Python regression tests, MCP stdio integration, JSON consistency che
 - [Third-party licences](THIRD_PARTY.md)
 - [Changelog](CHANGELOG.md)
 
-## Status
+## Version and licence
 
-Private release candidate 1.0.0-rc.1, imported as a fresh source snapshot. GitHub Pages has not been published. Exact version pins and automated security checks are included; review CI results and remaining limitations in SECURITY.md. Review the six-case constrained-selection evaluation, upstream asset integrity checks and release gates before publication. The owner has approved the MIT licence for original code. All documentation, interface copy and reports use English (UK terminology and GBP).
+Version 1.0.0. The release is subject to successful CI, privacy checks and deployment verification. See [CHANGELOG.md](CHANGELOG.md) and [RELEASE.md](RELEASE.md). Original project code is licensed under [MIT](LICENSE); third-party assets retain their upstream licences. This is a synthetic engineering demonstration, not an operational inventory system. The browser model selects a permitted focus; it does not establish autonomous reasoning.

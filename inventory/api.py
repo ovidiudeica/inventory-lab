@@ -5,7 +5,7 @@ from starlette.middleware.trustedhost import TrustedHostMiddleware
 from .core import stock, summary, investigate, report, PROCEDURES
 from .ai import explain
 
-app = FastAPI(title="Inventory Investigation Lab", version="1.0.0-rc.1")
+app = FastAPI(title="Inventory Investigation Lab", version="1.0.0")
 app.add_middleware(TrustedHostMiddleware, allowed_hosts=["localhost", "127.0.0.1"])
 
 
