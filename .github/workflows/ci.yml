@@ -65,4 +65,5 @@ jobs:
       - name: Require private commit metadata
         if: always()
         shell: bash
-        run: grep -Fx 'Metadata privacy review: No unrecognised addresses in scanned refs' "$RUNNER_TEMP/history-audit.txt"
+        run: |
+          grep -Fx 'Metadata privacy review: No unrecognised addresses in scanned refs' "$RUNNER_TEMP/history-audit.txt"
