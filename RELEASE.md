@@ -1,6 +1,6 @@
-# Release candidate 1.0.0-rc.1
+# Release 1.0.0
 
-Status: private release candidate imported as a fresh source snapshot. No previous repository history or pull requests are imported. No tag, GitHub Release, visibility change or Pages deployment is authorised.
+Version 1.0.0 is prepared for the first public release. Publication requires passing CI on main and a successful privacy review; deployment and release status are recorded in GitHub.
 
 ## Acceptance checklist
 
@@ -9,17 +9,17 @@ Status: private release candidate imported as a fresh source snapshot. No previo
 - Review all six real-model selections and independently verified canonical explanations in CI. Check invalid-output rejection and unchanged reports. A valid selection is not proof that it is the most useful focus.
 - Check upstream licence and asset integrity results; assess remaining browser runtime supply-chain limitations. No third-party assets are committed.
 - Owner approved the MIT licence for original project code on 26 November 2026.
-- Review all open Dependabot proposals. Checkout and Setup Python updates are included in this branch with exact SHAs; MCP 2.x is a major change deferred until compatibility is separately validated.
+- Review all open Dependabot proposals. Checkout and Setup Python are pinned to exact SHAs. MCP 2.x is a major change deferred until compatibility is separately validated; retain the tested MCP 1.x pin.
 - Confirm GitHub Free, zero additional-spend budgets and standard runners. No paid provider or external compute.
 - Confirm repository owner approves visibility change and publication separately.
 
-## Candidate notes
+## Release notes
 
 Inventory metrics and reports use a deterministic Python engine; REST and MCP share it. The static dashboard works without AI. Optional model inference runs in the visitor's browser and is explicitly unverified. No real employer data, ERP connection, commercial inference or stock mutation is included.
 
 ## Model review rubric
 
-For each SKU, review the draft against the canonical case:
+For each SKU, review the validated explanation against the canonical case:
 
 | SKU | Expected variance | Permitted possible explanation | SOPs |
 | --- | ---: | --- | --- |
@@ -32,7 +32,7 @@ For each SKU, review the draft against the canonical case:
 
 Development CI demonstrated free-form model quality failures in all six cases (missing variance, repeated or invented procedures). The remediation uses constrained selection and canonical rendering. Review the new CI results before approval; no arbitrary model text may be shown.
 
-## Publication runbook (not executed)
+## Publication runbook
 
 After approved release PR merge, repeat the final checks against main. Inspect public-facing repository metadata, history and Actions logs; confirm owner consent to disclosure (MIT licence already approved). Change visibility only with explicit approval. Configure GitHub Pages from main /docs, with HTTPS, then test the deployed URL, subpath routing, model opt-in and report download. Create the final tag/release only after approval and successful verification. If a critical issue is found, stop publication or disable Pages; making a repository private again does not erase copies already obtained.
 

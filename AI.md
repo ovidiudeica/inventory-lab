@@ -4,9 +4,9 @@ InventoryLab uses Transformers.js 3.8.1 and the pinned SmolLM2-135M-Instruct q4 
 
 ## Quality control
 
-Development CI showed that unconstrained generation produced repetitive text and invented procedure identifiers. The release candidate therefore uses constrained one-token selection instead of free-form advice. Three permitted investigation focus options are derived from the selected case's SOPs. The model selects A, B or C with other first-token IDs suppressed. The application independently accepts only a single allowed letter, maps it to the canonical procedure step, and builds the explanation from the exact Python export. No arbitrary model prose is displayed. Invalid output, timeout, cancellation or model failure returns deterministic guidance. All SOPs remain required; a focus is neither an ordering nor an authorisation. The downloadable report never changes.
+Development CI showed that unconstrained generation produced repetitive text and invented procedure identifiers. The application therefore uses constrained one-token selection instead of free-form advice. Three permitted investigation focus options are derived from the selected case's SOPs. The model selects A, B or C with other first-token IDs suppressed. The application independently accepts only a single allowed letter, maps it to the canonical procedure step, and builds the explanation from the exact Python export. No arbitrary model prose is displayed. Invalid output, timeout, cancellation or model failure returns deterministic guidance. All SOPs remain required; a focus is neither an ordering nor an authorisation. The downloadable report never changes.
 
-This is AI-assisted selection, not autonomous root-cause reasoning or free-form generative reporting. The model can select a less useful permitted focus. All available choices are safe training checks, and no selection changes an inventory record. Human review is still required.
+This is AI-assisted selection, not autonomous root-cause reasoning or free-form generative reporting. The model selected the first permitted option in all six evaluated cases; this does not demonstrate discriminative reasoning. It can select a less useful permitted focus. All available choices are safe training checks, and no selection changes an inventory record. Human review is still required.
 
 ## Downloads and privacy
 
