@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta name="description" content="A read-only inventory investigation and reporting demonstration using synthetic data.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; worker-src 'self'; img-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Inventory Investigation Lab</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="top"><div class="shell brand"><span class="brand-mark" aria-hidden="true">IL</span><div><strong>InventoryLab</strong><small>Engineering portfolio / 1.0.0-rc.1</small></div><span class="mode">Static demo · Read-only</span></div></header>
+  <main class="shell" id="main">
+    <section class="hero"><p class="eyebrow">WAREHOUSE SYSTEMS / INVENTORY CONTROL</p><h1>Inventory Investigation Lab</h1><p>Inspect stock accuracy, investigate variances and export evidence-led reports.</p><p class="notice"><strong>Synthetic data only.</strong> This static demonstration uses deterministic Python results. Optional AI runs on your device. No paid inference, ERP connection or stock adjustments are available.</p></section>
+    <p id="status" role="status">Loading inventory data…</p>
+    <div id="workspace" hidden>
+      <section aria-labelledby="metrics-heading"><h2 id="metrics-heading">Inventory overview</h2>
+        <div class="metrics">
+          <article><h3>SKUs counted</h3><strong id="metric-skus"></strong><small>All sample records</small></article>
+          <article><h3>Discrepancies</h3><strong id="metric-exceptions"></strong><small>SKUs requiring review</small></article>
+          <article><h3>Exact SKU matches</h3><strong id="metric-accuracy"></strong><small>Matched SKUs ÷ counted SKUs</small></article>
+          <article><h3>Absolute value variance</h3><strong id="metric-value"></strong><small>Sum of absolute GBP differences</small></article>
+        </div>
+      </section>
+      <div class="layout">
+        <section class="panel" aria-labelledby="stock-heading">
+          <div class="section-title"><div><p class="eyebrow">01 / STOCK</p><h2 id="stock-heading">Stock records</h2></div></div>
+          <div class="filters"><label for="search">Search SKU, product or bin<input id="search" type="search" placeholder="e.g. SKU-101"></label><label for="filter">Status<select id="filter"><option value="all">All records</option><option value="review">Discrepancies</option><option value="match">Matches</option></select></label><button id="reset" type="button">Reset</button></div>
+          <p id="count" role="status"></p>
+          <div class="table-scroll" tabindex="0" aria-label="Stock records table"><table><caption class="sr-only">Select a SKU to inspect its investigation.</caption><thead><tr><th scope="col">SKU / product</th><th scope="col">Bin</th><th scope="col">System</th><th scope="col">Physical</th><th scope="col">Variance</th><th scope="col">Status</th></tr></thead><tbody id="stock-body"></tbody></table></div>
+          <p class="hint">Variance = physical quantity − system quantity. Overview metrics cover the full dataset.</p>
+        </section>
+        <section class="panel detail" aria-labelledby="case-heading">
+          <p class="eyebrow">02 / INVESTIGATION</p><h2 id="case-heading">Select a stock record</h2>
+          <p id="case-empty">Choose a SKU to inspect its evidence.</p>
+          <div id="case-content" hidden>
+            <p id="case-meta" class="hint"></p>
+            <dl class="case-metrics"><div><dt>Quantity variance</dt><dd id="case-variance"></dd></div><div><dt>Value variance</dt><dd id="case-value"></dd></div></dl>
+            <h3>Observed evidence</h3><p id="evidence"></p>
+            <h3>Possible explanation</h3><p id="hypothesis"></p>
+            <p id="conclusion" class="notice"></p>
+            <h3>Recommended procedures</h3><div id="case-procedures"></div>
+            <section class="ai-panel" aria-labelledby="ai-heading">
+              <h3 id="ai-heading">Optional browser AI</h3>
+              <p class="hint">Experimental SmolLM2 135M (Apache 2.0). Starting downloads model/runtime files from Hugging Face and jsDelivr, potentially over 100 MB; no API key, paid inference or installation is required. Your device performs the computation.</p>
+              <div class="filters"><button id="ai-start" type="button">Select AI investigation focus</button><button id="ai-cancel" type="button" disabled>Cancel</button></div>
+              <p id="ai-status" role="status"></p>
+              <p id="ai-mode" class="hint"></p><pre id="ai-output" aria-label="Validated advisory explanation"></pre>
+              <p class="hint">The model selects one permitted focus; the explanation is assembled from the original evidence and SOP text. An invalid selection is rejected. The focus is optional and does not replace the full procedures or authorise adjustments. The downloadable report always uses Python results.</p>
+            </section>
+            <h3>Investigation report</h3><pre id="report-preview" tabindex="0" aria-label="Report preview"></pre>
+            <button id="download" class="primary" type="button">Download Markdown report</button>
+          </div>
+        </section>
+      </div>
+      <section class="panel lower" aria-labelledby="sop-heading"><p class="eyebrow">03 / PROCEDURES</p><h2 id="sop-heading">Procedure library</h2><p class="hint">Fictional standard operating procedures (SOPs) for training only.</p><div id="procedure-library" class="procedure-grid"></div></section>
+      <section class="panel lower" aria-labelledby="architecture-heading"><p class="eyebrow">04 / ENGINEERING</p><h2 id="architecture-heading">How the demonstration works</h2><div class="pipeline"><span>Python inventory engine</span><span>Generated JSON snapshot</span><span>Static web dashboard</span></div><p>REST API and MCP tools share the same Python engine when run locally. Optional AI runs in a browser worker after explicit consent. Only public model and runtime files are downloaded; the website does not call the REST or MCP services.</p><a href="https://github.com/ovidiudeica/inventory-lab">View source repository</a></section>
+    </div>
+    <noscript>This demonstration requires JavaScript. The Python backend can be used separately.</noscript>
+  </main>
+  <footer class="shell footer">Inventory Investigation Lab · Training demonstration · No operational decisions</footer>
+</body>
+</html>

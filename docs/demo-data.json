@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "summary": {
+    "skus": 6,
+    "exceptions": 4,
+    "system_units": 489,
+    "physical_units": 479,
+    "net_variance": -10,
+    "absolute_variance": 18,
+    "absolute_value": 406.5,
+    "exact_match_pct": 33.3
+  },
+  "stock": [
+    {
+      "sku": "SKU-101",
+      "name": "Bearing housing",
+      "bin": "A-01",
+      "system": 120,
+      "physical": 116,
+      "unit_cost": 8.5,
+      "variance": -4,
+      "value_variance": -34,
+      "evidence": "Recent transfer; destination receipt not yet reconciled",
+      "status": "Review"
+    },
+    {
+      "sku": "SKU-102",
+      "name": "Seal kit",
+      "bin": "A-02",
+      "system": 80,
+      "physical": 80,
+      "unit_cost": 4.25,
+      "variance": 0,
+      "value_variance": 0,
+      "evidence": "No exception recorded",
+      "status": "Match"
+    },
+    {
+      "sku": "SKU-103",
+      "name": "Control bracket",
+      "bin": "B-01",
+      "system": 45,
+      "physical": 49,
+      "unit_cost": 24,
+      "variance": 4,
+      "value_variance": 96,
+      "evidence": "Recent receipt; duplicate posting check pending",
+      "status": "Review"
+    },
+    {
+      "sku": "SKU-104",
+      "name": "Fastener pack",
+      "bin": "B-02",
+      "system": 200,
+      "physical": 194,
+      "unit_cost": 2.75,
+      "variance": -6,
+      "value_variance": -16.5,
+      "evidence": "Open picking transaction in sample log",
+      "status": "Review"
+    },
+    {
+      "sku": "SKU-105",
+      "name": "Sensor mount",
+      "bin": "C-01",
+      "system": 32,
+      "physical": 32,
+      "unit_cost": 38,
+      "variance": 0,
+      "value_variance": 0,
+      "evidence": "No exception recorded",
+      "status": "Match"
+    },
+    {
+      "sku": "SKU-106",
+      "name": "Cable assembly",
+      "bin": "C-02",
+      "system": 12,
+      "physical": 8,
+      "unit_cost": 65,
+      "variance": -4,
+      "value_variance": -260,
+      "evidence": "No recent transaction recorded in sample log",
+      "status": "Review"
+    }
+  ],
+  "procedures": {
+    "SOP-01": {
+      "title": "Independent recount",
+      "steps": [
+        "Check SKU and bin labels.",
+        "Recount using a second operator.",
+        "Record quantity, time and evidence."
+      ]
+    },
+    "SOP-02": {
+      "title": "Transaction reconciliation",
+      "steps": [
+        "Review recent receipts, picks and transfers.",
+        "Compare physical movement against system postings.",
+        "Check open or duplicate transactions."
+      ]
+    },
+    "SOP-03": {
+      "title": "Escalation and adjustment",
+      "steps": [
+        "Escalate unresolved variances to inventory control.",
+        "Obtain authorised approval before adjusting stock.",
+        "Record the reason and retain the audit trail."
+      ]
+    }
+  },
+  "cases": {
+    "SKU-101": {
+      "item": {
+        "sku": "SKU-101",
+        "name": "Bearing housing",
+        "bin": "A-01",
+        "system": 120,
+        "physical": 116,
+        "unit_cost": 8.5,
+        "variance": -4,
+        "value_variance": -34,
+        "evidence": "Recent transfer; destination receipt not yet reconciled",
+        "status": "Review"
+      },
+      "hypothesis": "Unreconciled transfer may explain the shortage.",
+      "conclusion": "Unverified hypothesis; do not adjust stock automatically.",
+      "procedure_ids": [
+        "SOP-01",
+        "SOP-02",
+        "SOP-03"
+      ]
+    },
+    "SKU-102": {
+      "item": {
+        "sku": "SKU-102",
+        "name": "Seal kit",
+        "bin": "A-02",
+        "system": 80,
+        "physical": 80,
+        "unit_cost": 4.25,
+        "variance": 0,
+        "value_variance": 0,
+        "evidence": "No exception recorded",
+        "status": "Match"
+      },
+      "hypothesis": "No discrepancy observed.",
+      "conclusion": "No variance in the sample count.",
+      "procedure_ids": [
+        "SOP-01"
+      ]
+    },
+    "SKU-103": {
+      "item": {
+        "sku": "SKU-103",
+        "name": "Control bracket",
+        "bin": "B-01",
+        "system": 45,
+        "physical": 49,
+        "unit_cost": 24,
+        "variance": 4,
+        "value_variance": 96,
+        "evidence": "Recent receipt; duplicate posting check pending",
+        "status": "Review"
+      },
+      "hypothesis": "Receipt posting mismatch may explain the surplus.",
+      "conclusion": "Unverified hypothesis; do not adjust stock automatically.",
+      "procedure_ids": [
+        "SOP-01",
+        "SOP-02",
+        "SOP-03"
+      ]
+    },
+    "SKU-104": {
+      "item": {
+        "sku": "SKU-104",
+        "name": "Fastener pack",
+        "bin": "B-02",
+        "system": 200,
+        "physical": 194,
+        "unit_cost": 2.75,
+        "variance": -6,
+        "value_variance": -16.5,
+        "evidence": "Open picking transaction in sample log",
+        "status": "Review"
+      },
+      "hypothesis": "An open pick may explain the shortage.",
+      "conclusion": "Unverified hypothesis; do not adjust stock automatically.",
+      "procedure_ids": [
+        "SOP-01",
+        "SOP-02",
+        "SOP-03"
+      ]
+    },
+    "SKU-105": {
+      "item": {
+        "sku": "SKU-105",
+        "name": "Sensor mount",
+        "bin": "C-01",
+        "system": 32,
+        "physical": 32,
+        "unit_cost": 38,
+        "variance": 0,
+        "value_variance": 0,
+        "evidence": "No exception recorded",
+        "status": "Match"
+      },
+      "hypothesis": "No discrepancy observed.",
+      "conclusion": "No variance in the sample count.",
+      "procedure_ids": [
+        "SOP-01"
+      ]
+    },
+    "SKU-106": {
+      "item": {
+        "sku": "SKU-106",
+        "name": "Cable assembly",
+        "bin": "C-02",
+        "system": 12,
+        "physical": 8,
+        "unit_cost": 65,
+        "variance": -4,
+        "value_variance": -260,
+        "evidence": "No recent transaction recorded in sample log",
+        "status": "Review"
+      },
+      "hypothesis": "Cause unknown; check recount and transaction history.",
+      "conclusion": "Unverified hypothesis; do not adjust stock automatically.",
+      "procedure_ids": [
+        "SOP-01",
+        "SOP-02",
+        "SOP-03"
+      ]
+    }
+  },
+  "reports": {
+    "SKU-101": "# Inventory investigation — SKU-101\nSynthetic data only | Read-only training exercise\n\nItem: Bearing housing | Bin: A-01\nSystem: 120 | Physical: 116 | Variance: -4\nValue variance: GBP -34.00\n\nEvidence: Recent transfer; destination receipt not yet reconciled\nHypothesis: Unreconciled transfer may explain the shortage.\nConclusion: Unverified hypothesis; do not adjust stock automatically.\n\n## Recommended procedures\n### SOP-01 — Independent recount\n- Check SKU and bin labels.\n- Recount using a second operator.\n- Record quantity, time and evidence.\n### SOP-02 — Transaction reconciliation\n- Review recent receipts, picks and transfers.\n- Compare physical movement against system postings.\n- Check open or duplicate transactions.\n### SOP-03 — Escalation and adjustment\n- Escalate unresolved variances to inventory control.\n- Obtain authorised approval before adjusting stock.\n- Record the reason and retain the audit trail.\n",
+    "SKU-102": "# Inventory investigation — SKU-102\nSynthetic data only | Read-only training exercise\n\nItem: Seal kit | Bin: A-02\nSystem: 80 | Physical: 80 | Variance: +0\nValue variance: GBP +0.00\n\nEvidence: No exception recorded\nHypothesis: No discrepancy observed.\nConclusion: No variance in the sample count.\n\n## Recommended procedures\n### SOP-01 — Independent recount\n- Check SKU and bin labels.\n- Recount using a second operator.\n- Record quantity, time and evidence.\n",
+    "SKU-103": "# Inventory investigation — SKU-103\nSynthetic data only | Read-only training exercise\n\nItem: Control bracket | Bin: B-01\nSystem: 45 | Physical: 49 | Variance: +4\nValue variance: GBP +96.00\n\nEvidence: Recent receipt; duplicate posting check pending\nHypothesis: Receipt posting mismatch may explain the surplus.\nConclusion: Unverified hypothesis; do not adjust stock automatically.\n\n## Recommended procedures\n### SOP-01 — Independent recount\n- Check SKU and bin labels.\n- Recount using a second operator.\n- Record quantity, time and evidence.\n### SOP-02 — Transaction reconciliation\n- Review recent receipts, picks and transfers.\n- Compare physical movement against system postings.\n- Check open or duplicate transactions.\n### SOP-03 — Escalation and adjustment\n- Escalate unresolved variances to inventory control.\n- Obtain authorised approval before adjusting stock.\n- Record the reason and retain the audit trail.\n",
+    "SKU-104": "# Inventory investigation — SKU-104\nSynthetic data only | Read-only training exercise\n\nItem: Fastener pack | Bin: B-02\nSystem: 200 | Physical: 194 | Variance: -6\nValue variance: GBP -16.50\n\nEvidence: Open picking transaction in sample log\nHypothesis: An open pick may explain the shortage.\nConclusion: Unverified hypothesis; do not adjust stock automatically.\n\n## Recommended procedures\n### SOP-01 — Independent recount\n- Check SKU and bin labels.\n- Recount using a second operator.\n- Record quantity, time and evidence.\n### SOP-02 — Transaction reconciliation\n- Review recent receipts, picks and transfers.\n- Compare physical movement against system postings.\n- Check open or duplicate transactions.\n### SOP-03 — Escalation and adjustment\n- Escalate unresolved variances to inventory control.\n- Obtain authorised approval before adjusting stock.\n- Record the reason and retain the audit trail.\n",
+    "SKU-105": "# Inventory investigation — SKU-105\nSynthetic data only | Read-only training exercise\n\nItem: Sensor mount | Bin: C-01\nSystem: 32 | Physical: 32 | Variance: +0\nValue variance: GBP +0.00\n\nEvidence: No exception recorded\nHypothesis: No discrepancy observed.\nConclusion: No variance in the sample count.\n\n## Recommended procedures\n### SOP-01 — Independent recount\n- Check SKU and bin labels.\n- Recount using a second operator.\n- Record quantity, time and evidence.\n",
+    "SKU-106": "# Inventory investigation — SKU-106\nSynthetic data only | Read-only training exercise\n\nItem: Cable assembly | Bin: C-02\nSystem: 12 | Physical: 8 | Variance: -4\nValue variance: GBP -260.00\n\nEvidence: No recent transaction recorded in sample log\nHypothesis: Cause unknown; check recount and transaction history.\nConclusion: Unverified hypothesis; do not adjust stock automatically.\n\n## Recommended procedures\n### SOP-01 — Independent recount\n- Check SKU and bin labels.\n- Recount using a second operator.\n- Record quantity, time and evidence.\n### SOP-02 — Transaction reconciliation\n- Review recent receipts, picks and transfers.\n- Compare physical movement against system postings.\n- Check open or duplicate transactions.\n### SOP-03 — Escalation and adjustment\n- Escalate unresolved variances to inventory control.\n- Obtain authorised approval before adjusting stock.\n- Record the reason and retain the audit trail.\n"
+  }
+}
