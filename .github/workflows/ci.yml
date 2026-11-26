@@ -1,0 +1,68 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.txt
+      - run: python -m pip check
+      - run: python -m inventory.build_demo --check
+      - run: python -m pytest tests -q -ra
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.txt -r requirements-web.txt
+      - run: python -m pip check
+      - run: python scripts/check_public_assets.py
+      - run: python -m playwright install --with-deps chromium
+      - run: python -m pytest web_tests -q -ra -s
+        env:
+          INVENTORY_REAL_MODEL_TEST: '1'
+  security:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: '3.12'
+      - run: python scripts/check_secrets.py
+      - name: Audit reachable history
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/check_history.py | tee "$RUNNER_TEMP/history-audit.txt"
+      - run: python -m venv .audit-venv
+      - run: .audit-venv/bin/python -m pip install -r requirements-security.txt
+      - run: .audit-venv/bin/bandit -r inventory -ll -ii
+      - run: .audit-venv/bin/pip-audit --no-deps --disable-pip -r requirements.txt -r requirements-web.txt
+      - name: Require private commit metadata
+        if: always()
+        shell: bash
+        run: grep -Fx 'Metadata privacy review: No unrecognised addresses in scanned refs' "$RUNNER_TEMP/history-audit.txt"
